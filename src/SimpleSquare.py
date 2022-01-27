@@ -19,8 +19,7 @@ def square(w=10,h=10,text='AS and SA'):
     #Add the square
     svg += '<rect x="0.1cm" y="0.1cm" width="{}cm" height="{}cm" style="stroke: #009900; stroke-width: 3; fill:none;"/>\n'.format(str(w),str(h))
     #Add text
-    svg += '<text x="{}cm" y="{}cm" font-size="1cm">{}</text>\n'.format(str(0.1+w/4),str(0.1+h/2),text)
-    
+    svg += '<text x="{}cm" y="{}cm" dominant-baseline="middle" text-anchor="middle" font-size="1cm">{}</text>\n'.format(str(0.1+w/2),str(0.1+h/2),text)
     #End the svg file
     svg += '</svg>'
     #return the output
