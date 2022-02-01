@@ -28,5 +28,5 @@ def square(w=10,h=10,text='AS and SA'):
     
 if __name__ == "__main__":
     with open("square.svg","w") as f:
-        f.write(square())
+        f.write(square(w=5.08,h=5.08))
         
