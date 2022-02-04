@@ -76,6 +76,8 @@ class SVG:
         polyline += 'stroke-width="{}"/>\n'.format(self.strokeWidth)
 
         return polyline
+    ###TODO: Add a circle method
+    ###TODO: Look into path method: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 
 
 if __name__ == '__main__':
