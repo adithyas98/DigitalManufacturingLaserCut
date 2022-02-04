@@ -29,6 +29,25 @@ class SVG:
         Will write the footer to close the svg script
         '''
         return '\n</svg>\n'
+    def rectangle(self,x,y,w,h,rx,ry):
+        '''
+        This will create a rectangle with the desired inputs
+        Inputs:
+            - x: starting x position
+            - y: starting y position
+            - w: width
+            - h: height
+            - rx: x radius for rounded corner
+            - ry: y radius for rounded corner
+        Output:
+            - creates a rect object with the desired parameters
+        '''
+        rect = '<rect x="{}" y="{}" '.format(x,y)
+        rect += 'width="{}" height="{}"'.format(w,h)
+        rect += ' rx="{}" ry="{}" />\n'.format(rx,ry)
+
+        return rect
+
 
     def polyline(self,points,stroke='black',fill="none"):
         '''
@@ -54,7 +73,7 @@ class SVG:
 
         polyline+= 'fill="{}" stroke="{}" '.format(fill,stroke)
 
-        polyline += 'stroke-width="{}"/>'.format(self.strokeWidth)
+        polyline += 'stroke-width="{}"/>\n'.format(self.strokeWidth)
 
         return polyline
 
@@ -66,9 +85,11 @@ if __name__ == '__main__':
 
     header = svg.header()
     footer = svg.footer()
+    rect = svg.rectangle(10,10,10,10,5,1)
 
     with open('test.svg','w') as f:
         f.write(header)
         f.write(poly)
+        f.write(rect)
         f.write(footer)
 
