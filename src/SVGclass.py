@@ -5,10 +5,6 @@
 class SVG:
     '''
     This class will implement all necessary SVG code
-    Attributes:
-       strokeWidth: The default width of the stroke that will be output in the svg file
-    Methods:
-        
     '''
     def __init__(self,strokeWidth=3):
         self.strokeWidth = 3 #The stroke width
