@@ -76,7 +76,18 @@ class SVG:
         polyline += 'stroke-width="{}"/>\n'.format(self.strokeWidth)
 
         return polyline
-    ###TODO: Add a circle method
+    def circle(self,x,y,r):
+        '''
+        Will create a circle based on the user inputs
+        Inputs:
+            - x: The x coordinate of the center of the circle
+            - y: The y coordinate of the center of the circle
+            - r: the radius of the circle in px
+        Output:
+            - cicrcle svg code
+        '''
+        c = '<circle cx="{}" cy="{}" r="{}"/>'.format(x,y,r)
+        return c
     ###TODO: Look into path method: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 
 
