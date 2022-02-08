@@ -157,7 +157,30 @@ class Box:
         base+=self.SVG.circle(origin+l-beta, origin+0.8*w, r)
         
         self.SVGcode.append(base)
-    
+    def LeftRight(self,originX,originY):
+        '''
+        This method will implement the left and right sides of the box
+        which includes the hinge mechanism
+        '''
+        #TODO: Complete this method
+        pass
+    def exportBox(self,fileName):
+        '''
+        Will run all the methods and export the box 
+        Inputs:
+            - fileName: Desired name of the outputed svg file
+        Output:
+            - Nothing is returned, but the svg file is created and saved
+        '''
+        #we want to run the methods first:
+
+
+        #Now we can open a file and add the contents of our list
+        with open(fileName) as f:
+            for element in self.SVGCode:
+                f.write(element)
+                f.write('\n')#add a new line item
+        
     def convertPxtoCm(self,px):
         '''
         This method will convert to cm from pixels
@@ -181,4 +204,5 @@ class Box:
         return (dpi/2.54) * cm
 
 
-
+if __name__ == '__main__':
+    #create a simple box class and test out the methods
