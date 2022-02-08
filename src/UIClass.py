@@ -12,8 +12,8 @@ class UserInput:
                 - The dictionary should take the following form
                     Variable Code(code to access the answer)
                        (Create a sub dictionary)
-                        - Question: The Question to ask
-                        - Data Type: pass in the conversion function
+                        - question: The Question to ask
+                        - convert: pass in the conversion function
                                     pointer
             - intro: What you would like to start the questioning with
         '''
@@ -29,7 +29,7 @@ class UserInput:
             as follows:
                     Variable Code(code to access the answer)
                        (Create a sub dictionary)
-                        - Question: The Question to ask
+                        - question: The Question to ask
                         - convert: pass in the conversion function
                                     pointer
                         - data: Contains the data
