@@ -52,7 +52,7 @@ class Box:
         self.qdata = ui.askQuestions()
 
 
-    def top(self,originX=80,originY):
+    def top(self,originX=80,originY=80):
         '''
         This method will create the top of the box
         Inputs:
@@ -173,7 +173,8 @@ class Box:
             - Nothing is returned, but the svg file is created and saved
         '''
         #we want to run the methods first:
-
+        self.top(10,10)
+        self.bottom(100,100)
 
         #Now we can open a file and add the contents of our list
         with open(fileName) as f:
@@ -206,3 +207,6 @@ class Box:
 
 if __name__ == '__main__':
     #create a simple box class and test out the methods
+    box = Box()
+    box.exportBox("TestBox.svg")#All the functions we wrote will be run here
+
