@@ -21,6 +21,8 @@ class Box:
         r: radius of screw hole
         sqnut_w: square nut width
         sqnut_t: square nut thickness
+        originX: this is where x-position of the box will start
+        originY: this is where y-position of the box will start
     '''
 
 
@@ -30,7 +32,8 @@ class Box:
              
     def Base(self):
         #function to cut out the base of the box
-        origin = 10 #sets the point where the base starts
+        originx = originX #sets the x point where the base starts
+        originy = originY #sets the y point where the base starts
                 
         #main rectangle
         base=SVG.rectangle(origin,origin, w, l, beta, beta)
@@ -61,11 +64,11 @@ class Box:
         
         self.SVGcode.append(base)
         
-    def FrontBack(self):
+    def FrontBack(self, offestX, offsetY):
         #function to cut out the front and back  panels of the box
          
-        originx = 10 #sets the x point where the panel starts
-        originy = 300 #sets the y point where the panel starts
+        originx = originX + offsetX #sets the x point where the panel starts
+        originy = originY + offsetY #sets the y point where the panel starts
         
         #outside perimeter
         base=SVG.rectangle(originx,originy, l, h-2*t, beta, beta)
