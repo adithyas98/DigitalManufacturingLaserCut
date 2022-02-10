@@ -1,9 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-<rect x="10" y="10" width="236.2204724409449" height="472.4409448818898" fill="none" stroke-width="3"  stroke="black"  rx="0.01" ry="0.01" />
-<rect x="10" y="10" width="49.60629921259843" height="48.425196850393704" fill="none" stroke-width="3"  stroke="black"  rx="0" ry="0" />
-<rect x="10" y="103.30708661417323" width="49.60629921259843" height="48.425196850393704" fill="none" stroke-width="3"  stroke="black"  rx="0" ry="0" />
-<rect x="196.61417322834646" y="10" width="49.60629921259843" height="48.425196850393704" fill="none" stroke-width="3"  stroke="black"  rx="0" ry="0" />
-<rect x="196.61417322834646" y="103.30708661417323" width="49.60629921259843" height="48.425196850393704" fill="none" stroke-width="3"  stroke="black"  rx="0" ry="0" />
+<rect x="10" y="10" width="708.6614173228347" height="377.9527559055118" fill="none" stroke-width="2"  stroke="black"  rx="59.05511811023622" ry="59.05511811023622" />
+<rect x="146.53543307086616" y="342.5984251968504" width="10.393700787401576" height="45.354330708661415" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="140.3937007874016" y="365.2755905511811" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="571.7322834645671" y="342.5984251968504" width="10.393700787401576" height="45.354330708661415" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="565.5905511811025" y="365.2755905511811" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="69.05511811023622" y="10" width="49.60629921259843" height="188.9763779527559" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="610.0000000000001" y="10" width="49.60629921259843" height="188.9763779527559" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 
 
 </svg>

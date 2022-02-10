@@ -12,8 +12,15 @@ class Box:
     The following class variables are obtained from UIClass:
         l: total length of the box
         w: total width of the box
+        h: height of the box
         t: thickness of the material
         
+    '''
+        
+
+
+    
+    '''    
     The following class variables are preset:
         beta: default offset of inserts and radius of rounded edges
         alpha_w: default width of screw T-holes
@@ -24,6 +31,8 @@ class Box:
         originX: this is where x-position of the box will start
         originY: this is where y-position of the box will start
     '''
+    
+
 
 
     def __init__(self):
@@ -51,14 +60,30 @@ class Box:
         #Find the dpi 
         qdict['dpi']['question'] = "What is your Screen's dpi?\n Find it using this link :https://www.infobyip.com/detectmonitordpi.php"
         qdict['dpi']['convert'] = int
+        
+        #Ask user if they want text on the front of the box 
+        qdict['engraving']['question'] = "Type the text you want to engrave on the front face of the box. Type NA if you do not want any engraving. "
+        qdict['engraving']['convert'] = str
 
+        #Ask user if they want Columbia Logo on the front face of the box
+        qdict['Logo']['question'] = "Do you want to engrave the Columbia logo on the front face of the box? Type YES or NO: "
+        qdict['Logo']['convert'] = str
+        
         #Create a UI class and ask questions
         ui = UserInput(qdict,intro)
         #Now we can ask the questions
         self.qdata = ui.askQuestions()
+        
+        #retrieve values for global variables
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        beta = 1.25*t
+        
 
 
-    def top(self,originX=80,originY=80):
+    def top(self,originX,originY):
         '''
         This method will create the top of the box
         Inputs:
@@ -74,16 +99,11 @@ class Box:
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
-        beta = 1.50 * t
-
-        #TODO: NEED TO DEFINE ALPHA!!!
-        alpha = 0.1
-        #TODO: NEED TO DEFINE r!!!
-        r = 0.01 
+        beta = 1.25*t
 
         #First we need to create overall rect
         top = ''
-        top += self.SVG.rectangle(originX,originY,w,h,r,r)
+        top += self.SVG.rectangle(originX,originY,w,h,0,0)
         #Now we need to code in the cut out rectangles
 
         #left hand side
@@ -125,18 +145,14 @@ class Box:
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
-        beta = 1.50 * t
+        beta = 1.25*t
 
-        #TODO: NEED TO DEFINE ALPHA!!!
-        alpha = 0.1
-        #TODO: NEED TO DEFINE r!!!
+        #screw head radius
         r = self.convertCmtoPx(0.212)
-        #TODO: Try to have an origin x and and origin y variable
-                #for more flexibility
 
         base =''
         #main rectangle
-        base+=self.SVG.rectangle(originX,originY, w, l, beta, beta)
+        base+=self.SVG.rectangle(originX,originY, l, w, beta, beta)
 
         
         #top left screw hole 1
@@ -166,32 +182,93 @@ class Box:
         self.SVGcode.append(base)
         
 
-    def FrontBack(self, offestX, offsetY):
+    def front(self, originx, originy):
         #function to cut out the front and back  panels of the box
-         
-        originx = originX + offsetX #sets the x point where the panel starts
-        originy = originY + offsetY #sets the y point where the panel starts
         
+        #define our paramters
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        beta = 1.25*t
+        
+        #screw and nut dimensions
+        sqnut_w = self.convertCmtoPx(0.48)
+        sqnut_t = self.convertCmtoPx(0.16)
+        alpha_w = self.convertCmtoPx(0.22)
+        alpha_l = self.convertCmtoPx(0.96)        
+        
+        #effective height of the front panel
+        y= h-2*t
+        
+        front =''
         #outside perimeter
-        base=SVG.rectangle(originx,originy, l, h-2*t, beta, beta)
+        front+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
+        
         
         #screw T-hole 1 vertical
-        base+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        front+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 1 square nut
-        base+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        front+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #screw T-hole 2 vertical
-        base+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        front+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 2 square nut
-        base+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        front+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #mating slit 1
-        base+=SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        front+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         #mating slit 2
-        base+=SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        front+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        
+        self.SVGcode.append(front)
+        
+    def back(self, originx, originy):
+        #function to cut out the front and back  panels of the box
+        
+        #define our paramters
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        beta = 1.25*t
+        
+        #screw and nut dimensions
+        sqnut_w = self.convertCmtoPx(0.48)
+        sqnut_t = self.convertCmtoPx(0.16)
+        alpha_w = self.convertCmtoPx(0.22)
+        alpha_l = self.convertCmtoPx(0.96)        
+        
+        #effective height of the front panel
+        y= h-2*t
+        
+        back =''
+        #outside perimeter
+        back+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
+        
+        
+        #screw T-hole 1 vertical
+        back+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        
+        #screw T-hole 1 square nut
+        back+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        
+        #screw T-hole 2 vertical
+        back+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        
+        #screw T-hole 2 square nut
+        back+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        
+        #mating slit 1
+        back+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        
+        #mating slit 2
+        back+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        
+        self.SVGcode.append(back)
         
     def LeftRight(self,originX,originY):
         '''
@@ -209,8 +286,11 @@ class Box:
             - Nothing is returned, but the svg file is created and saved
         '''
         #we want to run the methods first:
-        self.top(10,10)
-        #self.base(150,10)
+        #self.top(10,10)
+        #self.base(10,10)
+        self.front(10,10)
+        #self.back(10,10)
+        
 
         #Now we can open a file and add the contents of our list
         with open(fileName,'w') as f:
@@ -228,7 +308,7 @@ class Box:
         Output:
             - cm measurement for the input
         '''
-        dpi = qdata['dpi']['data'] #retrieve the dpi of the monitor
+        dpi = self.qdata['dpi']['data'] #retrieve the dpi of the monitor
         return (2.54/dpi)*px
         
     def convertCmtoPx(self,cm):

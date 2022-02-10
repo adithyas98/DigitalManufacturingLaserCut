@@ -6,7 +6,7 @@ class SVG:
     '''
     This class will implement all necessary SVG code
     '''
-    def __init__(self,strokeWidth=3):
+    def __init__(self):
         self.strokeWidth = 3 #The stroke width
         self.debug = True #Simple debug variable
 
@@ -40,7 +40,7 @@ class SVG:
         '''
         rect = '<rect x="{}" y="{}" '.format(x,y)
         rect += 'width="{}" height="{}" '.format(w,h)
-        rect += 'fill="{}" stroke-width="{}" '.format('none',self.strokeWidth)
+        rect += 'fill="{}" stroke-width="{}" '.format('none', 2)
         rect += ' stroke="{}" '.format('black')
         rect += ' rx="{}" ry="{}" />\n'.format(rx,ry)
 
@@ -85,7 +85,7 @@ class SVG:
         Output:
             - cicrcle svg code
         '''
-        c = '<circle cx="{}" cy="{}" fill="none" stroke="black" stroke-width="{}" r="{}"/>\n'.format(x,y,r,self.strokeWidth)
+        c = '<circle cx="{}" cy="{}" fill="none" stroke="black" stroke-width="{}" r="{}"/>\n'.format(x,y,self.strokeWidth, r)
         return c
 
 
