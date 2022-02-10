@@ -103,7 +103,7 @@ class Box:
 
         #First we need to create overall rect
         top = ''
-        top += self.SVG.rectangle(originX,originY,w,h,0,0)
+        top += self.SVG.rectangle(originX,originY,l,w,0,0)
         #Now we need to code in the cut out rectangles
 
         #left hand side
@@ -120,7 +120,7 @@ class Box:
 
         #Code the cutouts on the right hand side
         #Find the new x origin
-        rightOriginX = originX + (w - (t + 0.05*t))
+        rightOriginX = originX + (l - (t + 0.05*t))
         
         #We can pretty much use the same measurements as before
         top += self.SVG.rectangle(rightOriginX,originY,cw,ch,rx=0,ry=0)
@@ -285,11 +285,16 @@ class Box:
         Output:
             - Nothing is returned, but the svg file is created and saved
         '''
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        
         #we want to run the methods first:
-        #self.top(10,10)
-        #self.base(10,10)
-        self.front(10,10)
-        #self.back(10,10)
+        self.top(10,10)
+        self.base(10+t+l,10)
+        self.back(10,10+w+t)
+        self.front(10+t+l,10+w+t)
         
 
         #Now we can open a file and add the contents of our list

@@ -15,7 +15,7 @@ class SVG:
         Will write the header file to start an svg script
         '''
         
-        header = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1">\n'
+        header = '<svg viewBox="850 0 1500 1500" xmlns="http://www.w3.org/2000/svg" version="1.1">\n'
 
         return header
 
