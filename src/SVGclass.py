@@ -39,8 +39,11 @@ class SVG:
             - creates a rect object with the desired parameters
         '''
         rect = '<rect x="{}" y="{}" '.format(x,y)
-        rect += 'width="{}" height="{}"'.format(w,h)
+        rect += 'width="{}" height="{}" '.format(w,h)
+        rect += 'fill="{}" stroke-width="{}" '.format('none',self.strokeWidth)
+        rect += ' stroke="{}" '.format('black')
         rect += ' rx="{}" ry="{}" />\n'.format(rx,ry)
+
 
         return rect
 
@@ -82,7 +85,7 @@ class SVG:
         Output:
             - cicrcle svg code
         '''
-        c = '<circle cx="{}" cy="{}" r="{}"/>'.format(x,y,r)
+        c = '<circle cx="{}" cy="{}" fill="none" stroke="black" stroke-width="{}" r="{}"/>\n'.format(x,y,r,self.strokeWidth)
         return c
 
 

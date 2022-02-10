@@ -2,6 +2,7 @@
 
 from SVGclass import SVG
 from UIClass import UserInput
+from collections import defaultdict
 
 class Box:
     '''
@@ -26,7 +27,7 @@ class Box:
         self.SVG = SVG()
         #create the question dictionary
         intro = "Please answer the following questions. All measurements are in cm"
-        qdict = dict()
+        qdict = defaultdict(dict)
         #Find the length
         qdict['l']['question'] = "What length do you want for the box?"
         qdict['l']['convert'] = float
@@ -97,16 +98,16 @@ class Box:
         rightOriginX = originX + (w - (t + 0.05*t))
         
         #We can pretty much use the same measurements as before
-        top += self.SVG.recangle(rightOriginX,originY,cw,ch,rx=0,ry=0)
+        top += self.SVG.rectangle(rightOriginX,originY,cw,ch,rx=0,ry=0)
 
         #Now we just need to shift the start of the bottom cutout rect
             #by the same amount we did before
         top += self.SVG.rectangle(rightOriginX,botCutOriginY,cw,ch,rx=0,ry=0)
 
         #Now we can append our top to array
-        self.SVGCode.append(top)
+        self.SVGcode.append(top)
              
-    def base(self,origin=10):
+    def base(self,originX, originY):
         '''
         This method will create the bottom of the box.
         Inputs:
@@ -124,39 +125,40 @@ class Box:
         #TODO: NEED TO DEFINE ALPHA!!!
         alpha = 0.1
         #TODO: NEED TO DEFINE r!!!
-        r = 0.01 
+        r = self.convertCmtoPx(0.212)
         #TODO: Try to have an origin x and and origin y variable
                 #for more flexibility
 
-        
+        base =''
         #main rectangle
-        base+=self.SVG.rectangle(origin,origin, w, l, beta, beta)
+        base+=self.SVG.rectangle(originX,originY, w, l, beta, beta)
         
         #top left screw hole 1
-        base+=self.SVG.circle(origin+0.2*l, origin+beta, r)
+        base+=self.SVG.circle(originX+0.2*l, originY+beta, r)
         
         #top right screw hole 1
-        base+=self.SVG.circle(origin+0.8*l, origin+beta, r)
+        base+=self.SVG.circle(originX+0.8*l, originY+beta, r)
         
         #bottom left screw hole 1
-        base+=self.SVG.circle(origin+0.2*l, origin+w-beta, r)
+        base+=self.SVG.circle(originX+0.2*l, originY+w-beta, r)
 
         #bottom right screw hole 1
-        base+=self.SVG.circle(origin+0.8*l, origin+w-beta, r)
+        base+=self.SVG.circle(originX+0.8*l, originY+w-beta, r)
         
         #top left screw hole 2
-        base+=self.SVG.circle(origin+beta, origin+0.2*w, r)
+        base+=self.SVG.circle(originX+beta, originY+0.2*w, r)
         
         #top right screw hole 2
-        base+=self.SVG.circle(origin+l-beta, origin+0.2*w, r)
+        base+=self.SVG.circle(originX+l-beta, originY+0.2*w, r)
         
         #bottom left screw hole 2
-        base+=self.SVG.circle(origin+beta, origin+0.8*w, r)
+        base+=self.SVG.circle(originX+beta, originY+0.8*w, r)
         
         #bottom right screw hole 2
-        base+=self.SVG.circle(origin+l-beta, origin+0.8*w, r)
+        base+=self.SVG.circle(originX+l-beta, originY+0.8*w, r)
         
         self.SVGcode.append(base)
+        
     def LeftRight(self,originX,originY):
         '''
         This method will implement the left and right sides of the box
@@ -174,13 +176,15 @@ class Box:
         '''
         #we want to run the methods first:
         self.top(10,10)
-        self.bottom(100,100)
+        #self.base(150,10)
 
         #Now we can open a file and add the contents of our list
-        with open(fileName) as f:
-            for element in self.SVGCode:
+        with open(fileName,'w') as f:
+            f.write(self.SVG.header())
+            for element in self.SVGcode:
                 f.write(element)
                 f.write('\n')#add a new line item
+            f.write(self.SVG.footer())
         
     def convertPxtoCm(self,px):
         '''
@@ -201,7 +205,7 @@ class Box:
         Output:
             - The px measurment for the input
         '''
-        dpi = qdata['dpi']['data']
+        dpi = self.qdata['dpi']['data']
         return (dpi/2.54) * cm
 
 

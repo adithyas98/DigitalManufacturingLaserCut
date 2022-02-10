@@ -37,15 +37,15 @@ class UserInput:
         #Print out the intro paragraph
         print("{}\n".format(self.intro))
         #iterate through the keys and ask the questions
-        for key in qdict.keys():
+        for key in self.qdict.keys():
             #find the conversion function
-            convert = qdict[key]['convert']
-            ans = input(qdict[key]["question"])#ask the question
+            convert = self.qdict[key]['convert']
+            ans = input(self.qdict[key]["question"])#ask the question
             #Now we need to convert the data then add it to the dict
-            fullDict[key]['data'] = convert(ans)
+            self.fullDict[key]['data'] = convert(ans)
 
         #once we have done this for everything, we can return fullData
-        return self.fullData
+        return self.fullDict
 
     ##TODO: Create a method to output a text file of questions
     ##TODO: Create a method to input answers from the text file
