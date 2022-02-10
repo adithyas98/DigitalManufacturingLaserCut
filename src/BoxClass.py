@@ -14,13 +14,7 @@ class Box:
         w: total width of the box
         h: height of the box
         t: thickness of the material
-        
-    '''
-        
-
-
     
-    '''    
     The following class variables are preset:
         beta: default offset of inserts and radius of rounded edges
         alpha_w: default width of screw T-holes
@@ -28,16 +22,11 @@ class Box:
         r: radius of screw hole
         sqnut_w: square nut width
         sqnut_t: square nut thickness
-        originX: this is where x-position of the box will start
-        originY: this is where y-position of the box will start
     '''
-    
 
-
-
-    def __init__(self):
+    def __init__(self,debug=False):
         self.SVGcode=[]#blank list to hold 
-        self.debug = True #Simple debug variable
+        self.debug = debug #Simple debug variable
         self.SVG = SVG()
         #create the question dictionary
         intro = "Please answer the following questions. All measurements are in cm"
@@ -73,13 +62,19 @@ class Box:
         ui = UserInput(qdict,intro)
         #Now we can ask the questions
         self.qdata = ui.askQuestions()
-        
+        '''
+        TODO:We don't actually need to do this since we have the dictionary
         #retrieve values for global variables
         l = self.convertCmtoPx(self.qdata['l']['data'])
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
         beta = 1.25*t
+        '''
+
+        #TODO: Need to set the following variables
+        #alpha,beta, and screw and nut parameters
+
         
 
 
@@ -193,6 +188,7 @@ class Box:
         beta = 1.25*t
         
         #screw and nut dimensions
+        #TODO: Make these into variables we can modify incase we are wrong
         sqnut_w = self.convertCmtoPx(0.48)
         sqnut_t = self.convertCmtoPx(0.16)
         alpha_w = self.convertCmtoPx(0.22)
@@ -275,8 +271,59 @@ class Box:
         This method will implement the left and right sides of the box
         which includes the hinge mechanism
         '''
-        #TODO: Complete this method
-        pass
+        #define our parameters
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        beta = 1.25*t
+        alpha = self.alpha
+        side = ''
+
+        #Create the first rectangle 
+        #We need to recalculate the height of the box 
+                #since we will be cutting a lot of stuff out
+        sideHeight = (h-2*t) + 2*beta + t
+        
+        #Inputs for SVG Rectangle: rectangle(self,x,y,w,h,rx,ry):
+        #Now make the big rectangle
+        side += self.SVG.rectangle(originX,originY,w,sideHeight,0,0)
+        #Now draw the smaller rectangles to cut out the parts
+        
+        #Cut out the hinge square
+        hingeX = originX + 2*beta #calculate the new x coordinate
+
+        side += self.SVG.rectangle(hingeX,originY,w-2*beta,2*beta,0,0)
+        #now cut a whole
+        #Inputs for svg Circle: circle(self,x,y,r):
+            #x,y are for center of circle
+        side += self.SVG.circle(originX+beta,originY+beta,t/2)
+
+
+        #Now, we can cut out the slits
+        #First do the left one
+        leftSlitX = originX + beta
+        slitY = originY + 0.5*(h-2*t)
+
+        slitHeight = 0.5*(h-2*t)
+
+        #Make the right slit
+
+        side += self.SVG.rectangle(leftSlitX,slitY,t,slitHeight)
+
+
+        #Now, make the right slit
+        rightSlitX = originX + (w - t - beta)
+
+        side += self.SVG.rectangle(rightSlitX,slitY,t,slitHeight)
+
+
+        #Now cut out the inserts
+        #Find the y coordinate starting point for all cut outs
+        insertY =  2*beta + (h-2t)
+
+
+       
     def exportBox(self,fileName):
         '''
         Will run all the methods and export the box 
@@ -325,6 +372,6 @@ class Box:
 
 if __name__ == '__main__':
     #create a simple box class and test out the methods
-    box = Box()
-    box.exportBox("TestBox.svg")#All the functions we wrote will be run here
+    box = Box(debug=True)
+    box.exportBox("/Output/TestBox.svg")#All the functions we wrote will be run here
 
