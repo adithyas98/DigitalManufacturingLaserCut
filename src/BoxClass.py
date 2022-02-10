@@ -198,69 +198,75 @@ class Box:
         alpha_w = self.convertCmtoPx(0.22)
         alpha_l = self.convertCmtoPx(0.96)        
         
+        #effective height of the front panel
+        y= h-2*t
         
         front =''
         #outside perimeter
-        front+=SVG.rectangle(originx, originy, l, h-2*t, beta, beta)
+        front+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
         
         
         #screw T-hole 1 vertical
-        front+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        front+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 1 square nut
-        front+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        front+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #screw T-hole 2 vertical
-        front+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        front+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 2 square nut
-        front+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        front+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #mating slit 1
-        front+=SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        front+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         #mating slit 2
-        front+=SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        front+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         self.SVGcode.append(front)
         
     def back(self, originx, originy):
         #function to cut out the front and back  panels of the box
-
+        
         #define our paramters
         l = self.convertCmtoPx(self.qdata['l']['data'])
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
-        betax = 1.25*t
-        betay = 1.25*t
-
+        beta = 1.25*t
+        
         #screw and nut dimensions
         sqnut_w = self.convertCmtoPx(0.48)
         sqnut_t = self.convertCmtoPx(0.16)
         alpha_w = self.convertCmtoPx(0.22)
-        alpha_l = self.convertCmtoPx(0.96)          
+        alpha_l = self.convertCmtoPx(0.96)        
         
+        #effective height of the front panel
+        y= h-2*t
+        
+        back =''
         #outside perimeter
-        back=SVG.rectangle(originx, originy, l, h-2*t, betax, betay)
+        back+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
+        
         
         #screw T-hole 1 vertical
-        back+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        back+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 1 square nut
-        back+=SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        back+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #screw T-hole 2 vertical
-        back+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
+        back+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #screw T-hole 2 square nut
-        back+=SVG.rectangle(originx+0.4*l-0.5*alpha_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        back+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
         
         #mating slit 1
-        back+=SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        back+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         #mating slit 2
-        back+=SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        back+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         self.SVGcode.append(back)
         
