@@ -3,6 +3,7 @@
 from SVGclass import SVG
 from UIClass import UserInput
 from collections import defaultdict
+import os
 
 class Box:
     '''
@@ -24,9 +25,9 @@ class Box:
         sqnut_t: square nut thickness
     '''
 
-    def __init__(self,debug=False):
+    def __init__(self,fileInput=None,questionOut=False):
         self.SVGcode=[]#blank list to hold 
-        self.debug = debug #Simple debug variable
+        self.debug = False #Simple debug variable
         self.SVG = SVG()
         #create the question dictionary
         intro = "Please answer the following questions. All measurements are in cm"
@@ -61,7 +62,20 @@ class Box:
         #Create a UI class and ask questions
         ui = UserInput(qdict,intro)
         #Now we can ask the questions
-        self.qdata = ui.askQuestions()
+        if fileInput is not None and not questionOut:
+            #Then we want to input the file the user has given us
+            self.qdata = ui.inputCSV(fileInput)
+        elif questionOut:
+            #Then we want to run the output file method
+            print(ui.outputQuestions("{}.csv".format(fileInput)))
+            quit()
+        else:
+            self.qdata = ui.askQuestions()
+
+        if self.qdata == 1:
+            #Then there was some error and we should just stop the script here
+            print("Exiting")
+            quit()
         '''
         TODO:We don't actually need to do this since we have the dictionary
         #retrieve values for global variables
@@ -331,7 +345,7 @@ class Box:
 
         #Now cut out the inserts
         #Find the y coordinate starting point for all cut outs
-        insertY =  2*beta + (h-2t)
+        insertY =  2*beta + (h-2*t)
         phi = alpha - alpha*0.05 #The length of the insert
         #Inputs for SVG Rectangle: rectangle(self,x,y,w,h,rx,ry):
 
@@ -411,6 +425,6 @@ class Box:
 
 if __name__ == '__main__':
     #create a simple box class and test out the methods
-    box = Box(debug=True)
+    box = Box()
     box.exportBox("/Output/TestBox.svg")#All the functions we wrote will be run here
 
