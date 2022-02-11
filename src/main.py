@@ -8,7 +8,7 @@ def main():
     Main method that will run all of our code
     '''
     #Parse arguments
-    #global box
+    filename = None
     if len(sys.argv) == 1:
         print("Box class will be run normally")
         box = Box()
@@ -25,13 +25,16 @@ def main():
     elif sys.argv[1] == '-i':
         print("Data will be imported from the file")
         box = Box(fileInput=sys.argv[2],questionOut=False)
+        filename = sys.argv[2].split('/')[1].split('.')[0]
     else:
         print("Unrecognized input")
         print("Try -h for help")
         quit()
     #Generate the box now
-    filename = input("What you like to name the file? Just give us the name, we will handle the rest!")
-    box.exportBox("{}.svg".format(filename))
+    #we want to just use the name of the file if the user inputted one
+    if filename is None:
+        filename = input("What you like to name the file? Just give us the name, we will handle the rest!")
+    box.exportBox("output/{}.svg".format(filename))
     
 
 
