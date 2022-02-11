@@ -64,6 +64,14 @@ class Box:
         #Ask user if they want text on the front of the box 
         qdict['engraving']['question'] = "Type the text you want to engrave on the front face of the box. Type NA if you do not want any engraving. "
         qdict['engraving']['convert'] = str
+        
+        #Ask user if they want text on the top of the box 
+        qdict['engraving2']['question'] = "Type the text you want to engrave on the top face of the box. Type NA if you do not want any engraving. "
+        qdict['engraving2']['convert'] = str  
+        
+        #Ask user if they want text on the top of the box 
+        qdict['DM']['question'] = "Do you want to engrave the words DIGITAL MANUFACTURING on the front of the box? Type Yes or No: "
+        qdict['DM']['convert'] = str 
 
         #Ask user if they want Columbia Logo on the front face of the box
         qdict['Logo']['question'] = "Do you want to engrave the Columbia logo on the front face of the box? Type YES or NO: "
@@ -128,6 +136,13 @@ class Box:
         #Now we just need to shift the start of the bottom cutout rect
             #by the same amount we did before
         top += self.SVG.rectangle(rightOriginX,botCutOriginY,cw,ch,rx=0,ry=0)
+        
+        #User Defined Text        
+        usertext = self.qdata['engraving2']['data']
+        if usertext != 'NA' and len(usertext)<20:
+            top+='<text x="{}" y="{}"'.format(originX+0.5*l, originY+0.5*w)
+            top+=' dominant-baseline="middle" text-anchor="middle"'
+            top+=' font-size="{}">{}</text>\n'.format(0.05*l, usertext)
 
         #Now we can append our top to array
         self.SVGcode.append(top)
@@ -189,6 +204,26 @@ class Box:
         f.close()    
         return logocode    
     
+    def screwhole(self, originx,originy):
+        #function creates the screw hole 
+        
+        #screw and nut dimensions
+        sqnut_w = self.convertCmtoPx(0.48)
+        sqnut_t = self.convertCmtoPx(0.16)
+        alpha_w = self.convertCmtoPx(0.22)
+        alpha_l = self.convertCmtoPx(0.96)
+        
+        #screw length cut (vertical)
+        screwHole=self.SVG.rectangle(originx-0.5*alpha_w, originy-alpha_l, alpha_w, alpha_l, 0, 0)
+        
+        #square nut cut (horizontal)
+        nut_offsetx = originx-0.5*sqnut_w
+        nut_offsety = originy-0.5*alpha_l-0.5*sqnut_t
+        screwHole+=self.SVG.rectangle(nut_offsetx, nut_offsety, sqnut_w, sqnut_t, 0, 0)
+        
+        return screwHole
+        
+    
     def front(self, originx, originy):
         #function to cut out the front and back  panels of the box
         
@@ -212,18 +247,9 @@ class Box:
         #outside perimeter
         front+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
         
-        
-        #screw T-hole 1 vertical
-        front+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
-        
-        #screw T-hole 1 square nut
-        front+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
-        
-        #screw T-hole 2 vertical
-        front+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
-        
-        #screw T-hole 2 square nut
-        front+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        #cutouts to fit screw and nut
+        front+=self.screwhole(originx+0.2*l,originy+y)
+        front+=self.screwhole(originx+0.8*l,originy+y)
         
         #mating slit 1
         front+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
@@ -232,9 +258,23 @@ class Box:
         front+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
         
         #Columbia Logo
-        if self.qdata['Logo']['data'] == 'YES':
+        if self.qdata['Logo']['data'].lower() == 'yes':
             front+=self.logo('ColumbiaLogoTextFile.txt').format(originx-350, originy-250)
+            
+        #User defined text
+        usertext = self.qdata['engraving']['data']
+        if usertext != 'NA' and len(usertext)<16:
+            front+='<text x="{}" y="{}"'.format(originx+0.5*l, originy+0.75*y)
+            front+=' dominant-baseline="middle" text-anchor="middle"'
+            front+=' font-size="{}">{}</text>\n'.format(0.05*l, usertext)
         
+        #engrave DIGITAL MANUFACTURING based on user response
+        DMresponse = self.qdata['DM']['data'].lower()
+        DMtext = 'DIGITAL MANUFACTURING'
+        if DMresponse == 'yes':
+            front+='<text x="{}" y="{}"'.format(originx+0.5*l, originy+0.55*y)
+            front+=' dominant-baseline="middle" text-anchor="middle"'
+            front+=' font-size="{}">{}</text>\n'.format(0.04*l, DMtext)    
         self.SVGcode.append(front)
         
     def back(self, originx, originy):
@@ -260,18 +300,9 @@ class Box:
         #outside perimeter
         back+=self.SVG.rectangle(originx, originy, l, y, beta, beta)
         
-        
-        #screw T-hole 1 vertical
-        back+=self.SVG.rectangle(originx+0.2*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
-        
-        #screw T-hole 1 square nut
-        back+=self.SVG.rectangle(originx+0.2*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
-        
-        #screw T-hole 2 vertical
-        back+=self.SVG.rectangle(originx+0.8*l-0.5*alpha_w, originy+h-2*t-alpha_l, alpha_w, alpha_l, 0, 0)
-        
-        #screw T-hole 2 square nut
-        back+=self.SVG.rectangle(originx+0.8*l-0.5*sqnut_w, originy+h-2*t-0.5*alpha_l, sqnut_w, sqnut_t, 0, 0)
+        #cutouts to fit screw and nut
+        back+=self.screwhole(originx+0.2*l,originy+y)
+        back+=self.screwhole(originx+0.8*l,originy+y)
         
         #mating slit 1
         back+=self.SVG.rectangle(originx+beta, originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
