@@ -182,6 +182,13 @@ class Box:
         self.SVGcode.append(base)
         
 
+    def logo(self, filename):
+        #this method reads in the Columbia Logo file in text form
+        with open(filename, 'r') as f:
+            logocode = f.read()
+        f.close()    
+        return logocode    
+    
     def front(self, originx, originy):
         #function to cut out the front and back  panels of the box
         
@@ -223,6 +230,10 @@ class Box:
         
         #mating slit 2
         front+=self.SVG.rectangle(originx+l-beta-(t+0.05*t), originy, t+0.05*t, 0.5*(h-2*t), 0, 0)
+        
+        #Columbia Logo
+        if self.qdata['Logo']['data'] == 'YES':
+            front+=self.logo('ColumbiaLogoTextFile.txt').format(originx-350, originy-250)
         
         self.SVGcode.append(front)
         
