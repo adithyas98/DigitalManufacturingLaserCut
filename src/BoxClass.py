@@ -429,13 +429,13 @@ class Box:
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
-        if l<9 or l>15:
+        if l<8 or l>15:
             return False
-        if w<9 or w>15:
+        if w<8 or w>15:
             return False
-        if h<9 or h>15:
+        if h<8 or h>15:
             return False
-        if t>1:
+        if t>4:
             return False
         #If we meet all of these checks, then return true
         return True
