@@ -1,2 +1,2 @@
 # DigitalManufacturingLaserCut
-Frabricate a box using only software
+Fabricate a box using only software
