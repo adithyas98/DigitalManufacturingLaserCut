@@ -76,6 +76,11 @@ class Box:
             #Then there was some error and we should just stop the script here
             print("Exiting")
             quit()
+        elif not self.checkDims():
+            #Then we have an issue with the dimensions
+            print("There was an error with your dimensions, please try again.")
+            print("Exiting program, please restart and try again.")
+            quit()
         '''
         TODO:We don't actually need to do this since we have the dictionary
         #retrieve values for global variables
@@ -410,6 +415,31 @@ class Box:
         '''
         dpi = self.qdata['dpi']['data'] #retrieve the dpi of the monitor
         return (2.54/dpi)*px
+        
+    def checkDims(self):
+        '''
+        Checks the dimensions to see if there are any issues
+        Inputs:
+            - None
+        Outputs:
+            - return True if dims are good
+            - return False if dims are bad
+        '''
+        l = self.convertCmtoPx(self.qdata['l']['data'])
+        w = self.convertCmtoPx(self.qdata['w']['data'])
+        h = self.convertCmtoPx(self.qdata['h']['data'])
+        t = self.convertCmtoPx(self.qdata['t']['data'])
+        if l<8 or l>15:
+            return False
+        if w<8 or w>15:
+            return False
+        if h<8 or h>15:
+            return False
+        if t>4:
+            return False
+        #If we meet all of these checks, then return true
+        return True
+
         
     def convertCmtoPx(self,cm):
         '''
