@@ -266,7 +266,7 @@ class Box:
         
         self.SVGcode.append(back)
         
-    def LeftRight(self,originX,originY):
+    def side(self,originX,originY):
         '''
         This method will implement the left and right sides of the box
         which includes the hinge mechanism
@@ -321,6 +321,29 @@ class Box:
         #Now cut out the inserts
         #Find the y coordinate starting point for all cut outs
         insertY =  2*beta + (h-2t)
+        phi = alpha - alpha*0.05 #The length of the insert
+        #Inputs for SVG Rectangle: rectangle(self,x,y,w,h,rx,ry):
+
+        #Section 1: Before first insert
+        sec1Width = 0.2*w - phi
+
+        #Cut the rectangle
+        side += self.SVG.rectangle(originX,insertY,sec1Width,t,0,0)
+
+        #Section 2: In between inserts
+        sec2Width = w - (0.2*w+0.5*phi) - (0.5*phi+0.2*w)
+        sec2X = 0.2*w+0.5*phi
+
+        side += self.SVG.rectangle(sec2X,insertY,sec2Width,t,0,0)
+
+
+        #Section 3: Cutout after the second insert
+        sec3X = w - 0.2*w + 0.5*phi
+        sec3Width = originX + w - 0.2*w + 0.5*phi
+
+        side += self.SVG.rectangle(sec3X,insertY,sec3Width,t,0,0)
+
+        self.SVGcode.append(side)
 
 
        
