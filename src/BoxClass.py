@@ -219,7 +219,13 @@ class Box:
         return logocode    
     
     def screwhole(self, originx,originy):
-        #function creates the screw hole 
+        '''
+        Function creates the screw hole 
+        Inputs:
+            - Originx: the x-coordinate at the bottom of the t-shaped screhole
+            - Originy: the y-coordinate at the bottom of the t-shaped screhole
+        '''
+
         
         #screw and nut dimensions
         sqnut_w = self.convertCmtoPx(0.48)
@@ -378,31 +384,11 @@ class Box:
 
         side += self.SVG.rectangle(rightSlitX,slitY,t,slitHeight)
 
-
-        #Now cut out the inserts
-        #Find the y coordinate starting point for all cut outs
-        insertY =  2*beta + (h-2*t)
-        phi = alpha - alpha*0.05 #The length of the insert
-        #Inputs for SVG Rectangle: rectangle(self,x,y,w,h,rx,ry):
-
-        #Section 1: Before first insert
-        sec1Width = 0.2*w - phi
-
-        #Cut the rectangle
-        side += self.SVG.rectangle(originX,insertY,sec1Width,t,0,0)
-
-        #Section 2: In between inserts
-        sec2Width = w - (0.2*w+0.5*phi) - (0.5*phi+0.2*w)
-        sec2X = 0.2*w+0.5*phi
-
-        side += self.SVG.rectangle(sec2X,insertY,sec2Width,t,0,0)
-
-
-        #Section 3: Cutout after the second insert
-        sec3X = w - 0.2*w + 0.5*phi
-        sec3Width = originX + w - 0.2*w + 0.5*phi
-
-        side += self.SVG.rectangle(sec3X,insertY,sec3Width,t,0,0)
+        
+        #Add the screw hole inserts
+        screwY = originY + (h-2*t)
+        side += self.screwhole(0.2*w,screwY)#The left screw inlet
+        side += self.screwhole(w-0.2*w,screwY)#The right screw inlet
 
         self.SVGcode.append(side)
 
