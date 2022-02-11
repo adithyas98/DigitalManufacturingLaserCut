@@ -92,7 +92,8 @@ class UserInput:
             for row in reader:
                 ID = row[0] #retrieve the ID
                 try:
-                    self.fullDict[ID]['data'] = self.qdict[key]['convert'](row[2])
+                    convert = self.qdict[ID]['convert']
+                    self.fullDict[ID]['data'] = convert(row[2])
                 #retrieve and store the data
                 except:
                     print("Something was wrong in the input you provided\n")

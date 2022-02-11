@@ -19,6 +19,7 @@ def main():
         print("Input column of the csv\n")
         print("-i {FileName.csv} will import your specifications from the file specified\n")
         print("Run the file with no arguments to have the script manually ask you for each input")
+        quit()
     elif sys.argv[1] == '-o':
         box = Box(fileInput=sys.argv[2],questionOut=True)
     elif sys.argv[1] == '-i':

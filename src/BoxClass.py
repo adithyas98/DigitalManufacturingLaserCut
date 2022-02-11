@@ -89,21 +89,6 @@ class Box:
             print("There was an error with your dimensions, please try again.")
             print("Exiting program, please restart and try again.")
             quit()
-        '''
-        TODO:We don't actually need to do this since we have the dictionary
-        #retrieve values for global variables
-        l = self.convertCmtoPx(self.qdata['l']['data'])
-        w = self.convertCmtoPx(self.qdata['w']['data'])
-        h = self.convertCmtoPx(self.qdata['h']['data'])
-        t = self.convertCmtoPx(self.qdata['t']['data'])
-        beta = 1.25*t
-        '''
-
-        #TODO: Need to set the following variables
-        #alpha,beta, and screw and nut parameters
-
-        
-
 
     def top(self,originX,originY):
         '''
@@ -344,13 +329,12 @@ class Box:
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
         beta = 1.25*t
-        alpha = self.alpha
         side = ''
 
         #Create the first rectangle 
         #We need to recalculate the height of the box 
                 #since we will be cutting a lot of stuff out
-        sideHeight = (h-2*t) + 2*beta + t
+        sideHeight = (h-2*t) + 2*beta
         
         #Inputs for SVG Rectangle: rectangle(self,x,y,w,h,rx,ry):
         #Now make the big rectangle
@@ -370,25 +354,25 @@ class Box:
         #Now, we can cut out the slits
         #First do the left one
         leftSlitX = originX + beta
-        slitY = originY + 0.5*(h-2*t)
+        slitY = originY + 0.5*(h-2*t) + 2*beta
 
         slitHeight = 0.5*(h-2*t)
 
         #Make the right slit
 
-        side += self.SVG.rectangle(leftSlitX,slitY,t,slitHeight)
+        side += self.SVG.rectangle(leftSlitX,slitY,t,slitHeight,0,0)
 
 
         #Now, make the right slit
         rightSlitX = originX + (w - t - beta)
 
-        side += self.SVG.rectangle(rightSlitX,slitY,t,slitHeight)
+        side += self.SVG.rectangle(rightSlitX,slitY,t,slitHeight,0,0)
 
         
         #Add the screw hole inserts
-        screwY = originY + (h-2*t)
-        side += self.screwhole(0.2*w,screwY)#The left screw inlet
-        side += self.screwhole(w-0.2*w,screwY)#The right screw inlet
+        screwY = originY + (h-2*t) + 2*beta
+        side += self.screwhole(originX+0.2*w,screwY)#The left screw inlet
+        side += self.screwhole(originX+w-0.2*w,screwY)#The right screw inlet
 
         self.SVGcode.append(side)
 
@@ -406,12 +390,15 @@ class Box:
         w = self.convertCmtoPx(self.qdata['w']['data'])
         h = self.convertCmtoPx(self.qdata['h']['data'])
         t = self.convertCmtoPx(self.qdata['t']['data'])
+        beta = 1.25 * t
         
         #we want to run the methods first:
         self.top(10,10)
         self.base(10+t+l,10)
         self.back(10,10+w+t)
         self.front(10+t+l,10+w+t)
+        self.side(10+2*t+2*l,10)
+        self.side(10+2*t+2*l,10+(h-2*t) + 2*beta + 2*t)
         
 
         #Now we can open a file and add the contents of our list
@@ -442,10 +429,10 @@ class Box:
             - return True if dims are good
             - return False if dims are bad
         '''
-        l = self.convertCmtoPx(self.qdata['l']['data'])
-        w = self.convertCmtoPx(self.qdata['w']['data'])
-        h = self.convertCmtoPx(self.qdata['h']['data'])
-        t = self.convertCmtoPx(self.qdata['t']['data'])
+        l = self.qdata['l']['data']
+        w = self.qdata['w']['data']
+        h = self.qdata['h']['data']
+        t = self.qdata['t']['data']
         if l<8 or l>15:
             return False
         if w<8 or w>15:
