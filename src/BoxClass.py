@@ -2,7 +2,7 @@
 
 from SVGclass import SVG
 from UIClass import UserInput
-from collections import defaultdict
+from collections import defaultdict 
 import os
 
 class Box:
@@ -162,7 +162,7 @@ class Box:
         beta = 1.25*t
 
         #screw head radius
-        r = self.convertCmtoPx(0.212)
+        r = self.convertCmtoPx(0.21844/2)
 
         base =''
         #main rectangle
@@ -215,15 +215,15 @@ class Box:
         #screw and nut dimensions
         sqnut_w = self.convertCmtoPx(0.48)
         sqnut_t = self.convertCmtoPx(0.16)
-        alpha_w = self.convertCmtoPx(0.22)
-        alpha_l = self.convertCmtoPx(0.96)
+        alpha_w = self.convertCmtoPx(0.21)
+        alpha_l = self.convertCmtoPx(0.9)
         
         #screw length cut (vertical)
         screwHole=self.SVG.rectangle(originx-0.5*alpha_w, originy-alpha_l, alpha_w, alpha_l, 0, 0)
         
         #square nut cut (horizontal)
         nut_offsetx = originx-0.5*sqnut_w
-        nut_offsety = originy-0.5*alpha_l-0.5*sqnut_t
+        nut_offsety = originy-0.35*alpha_l-0.5*sqnut_t
         screwHole+=self.SVG.rectangle(nut_offsetx, nut_offsety, sqnut_w, sqnut_t, 0, 0)
         
         return screwHole
@@ -348,7 +348,7 @@ class Box:
         #now cut a whole
         #Inputs for svg Circle: circle(self,x,y,r):
             #x,y are for center of circle
-        side += self.SVG.circle(originX+beta,originY+beta,t/2)
+        side += self.SVG.circle(originX+beta,originY+beta,t/1.25)
 
 
         #Now, we can cut out the slits
