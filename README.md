@@ -1,6 +1,6 @@
 # DigitalManufacturingLaserCut
 
-![Constructed Acrylic Box](Resources/box.png)
+![Constructed Acrylic Box](./Resources/Box.png)
 
 Video: [https://www.youtube.com/watch?v=rqIyNnawNdU](https://www.youtube.com/watch?v=rqIyNnawNdU)
 
