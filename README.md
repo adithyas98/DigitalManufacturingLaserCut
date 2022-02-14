@@ -1,5 +1,8 @@
 # DigitalManufacturingLaserCut
 
+![Constructed Acrylic Box](./Resources/box.png)
+
+Video: [https://www.youtube.com/watch?v=rqIyNnawNdU](https://www.youtube.com/watch?v=rqIyNnawNdU)
 
 ## How to Use It:
 
@@ -82,8 +85,5 @@ This class also allows the user to import their desired settings using a csv fil
 
 This class implements all of the sides of the box taking into account the measurements the user has inputted. These sides are then placed on the svg canvas such that the least amount of space is taken and no overlaps occur.
 
-## Example box Output
-
-TODO: Add a box output image
 
 
