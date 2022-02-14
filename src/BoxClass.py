@@ -348,7 +348,7 @@ class Box:
         #now cut a whole
         #Inputs for svg Circle: circle(self,x,y,r):
             #x,y are for center of circle
-        side += self.SVG.circle(originX+beta,originY+beta,t/1.25)
+        side += self.SVG.circle(originX+beta,originY+beta,t/1.05)
 
 
         #Now, we can cut out the slits
@@ -393,11 +393,11 @@ class Box:
         beta = 1.25 * t
         
         #we want to run the methods first:
-        self.top(10,10)
-        self.base(10+t+l,10)
-        self.back(10,10+w+t)
-        self.front(10+t+l,10+w+t)
-        self.side(10+2*t+2*l,10)
+        #self.top(10,10)
+        #self.base(10+t+l,10)
+        #self.back(10,10+w+t)
+        #self.front(10+t+l,10+w+t)
+        #self.side(10+2*t+2*l,10)
         self.side(10+2*t+2*l,10+(h-2*t) + 2*beta + 2*t)
         
 

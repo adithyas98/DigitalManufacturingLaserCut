@@ -7,27 +7,27 @@
 <text x="293.46456692913387" y="269.8425196850394" dominant-baseline="middle" text-anchor="middle" font-size="28.34645669291339">SA and AS</text>
 
 <rect x="592.0472440944882" y="10" width="566.9291338582677" height="519.6850393700788" fill="none" stroke-width="2"  stroke="black"  rx="18.897637795275593" ry="18.897637795275593" />
-<circle cx="705.4330708661417" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="1045.5905511811025" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="705.4330708661417" cy="510.7874015748032" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="1045.5905511811025" cy="510.7874015748032" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="610.9448818897638" cy="113.93700787401576" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="1140.0787401574803" cy="113.93700787401576" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="610.9448818897638" cy="425.74803149606305" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
-<circle cx="1140.0787401574803" cy="425.74803149606305" fill="none" stroke="black" stroke-width="3" r="9.448818897637796"/>
+<circle cx="705.4330708661417" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="1045.5905511811025" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="705.4330708661417" cy="510.7874015748032" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="1045.5905511811025" cy="510.7874015748032" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="610.9448818897638" cy="113.93700787401576" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="1140.0787401574803" cy="113.93700787401576" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="610.9448818897638" cy="425.74803149606305" fill="none" stroke="black" stroke-width="3" r="5.16"/>
+<circle cx="1140.0787401574803" cy="425.74803149606305" fill="none" stroke="black" stroke-width="3" r="5.16"/>
 
 <rect x="10" y="544.8031496062993" width="566.9291338582677" height="442.20472440944883" fill="none" stroke-width="2"  stroke="black"  rx="18.897637795275593" ry="18.897637795275593" />
-<rect x="118.18897637795277" y="944.488188976378" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="118.42519685039372" y="944.488188976378" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="112.0472440944882" y="968.3464566929133" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="458.3464566929134" y="944.488188976378" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="458.58267716535437" y="944.488188976378" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="452.2047244094489" y="968.3464566929133" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="28.897637795275593" y="544.8031496062993" width="15.874015748031498" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="542.1574803149606" y="544.8031496062993" width="15.874015748031498" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 
 <rect x="592.0472440944882" y="544.8031496062993" width="566.9291338582677" height="442.20472440944883" fill="none" stroke-width="2"  stroke="black"  rx="18.897637795275593" ry="18.897637795275593" />
-<rect x="700.236220472441" y="944.488188976378" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="700.4724409448819" y="944.488188976378" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="694.0944881889764" y="968.3464566929133" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="1040.3937007874017" y="944.488188976378" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="1040.6299212598426" y="944.488188976378" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1034.2519685039372" y="968.3464566929133" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="610.9448818897638" y="544.8031496062993" width="15.874015748031498" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1124.2047244094488" y="544.8031496062993" width="15.874015748031498" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
@@ -561,22 +561,22 @@
 
 <rect x="1174.0944881889764" y="10" width="519.6850393700788" height="480.0" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1211.8897637795276" y="10" width="481.88976377952764" height="37.795275590551185" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<circle cx="1192.992125984252" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="8.638920134983127"/>
+<circle cx="1192.992125984252" cy="28.897637795275593" fill="none" stroke="black" stroke-width="3" r="14.398200224971879"/>
 <rect x="1192.992125984252" y="268.8976377952756" width="15.118110236220474" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1659.763779527559" y="268.8976377952756" width="15.118110236220474" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="1272.8346456692914" y="447.4803149606299" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="1273.0708661417323" y="447.4803149606299" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1266.6929133858268" y="471.33858267716533" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="1584.6456692913387" y="447.4803149606299" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="1584.8818897637796" y="447.4803149606299" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1578.5039370078741" y="471.33858267716533" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 
 <rect x="1174.0944881889764" y="520.2362204724409" width="519.6850393700788" height="480.0" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1211.8897637795276" y="520.2362204724409" width="481.88976377952764" height="37.795275590551185" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<circle cx="1192.992125984252" cy="539.1338582677165" fill="none" stroke="black" stroke-width="3" r="8.638920134983127"/>
+<circle cx="1192.992125984252" cy="539.1338582677165" fill="none" stroke="black" stroke-width="3" r="14.398200224971879"/>
 <rect x="1192.992125984252" y="779.1338582677165" width="15.118110236220474" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1659.763779527559" y="779.1338582677165" width="15.118110236220474" height="221.10236220472441" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="1272.8346456692914" y="957.7165354330708" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="1273.0708661417323" y="957.7165354330708" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1266.6929133858268" y="981.5748031496062" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
-<rect x="1584.6456692913387" y="957.7165354330708" width="10.393700787401576" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
+<rect x="1584.8818897637796" y="957.7165354330708" width="9.921259842519685" height="42.51968503937008" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 <rect x="1578.5039370078741" y="981.5748031496062" width="22.677165354330707" height="7.559055118110237" fill="none" stroke-width="2"  stroke="black"  rx="0" ry="0" />
 
 

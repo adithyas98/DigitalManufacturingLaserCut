@@ -2,7 +2,7 @@ ID,Question,Input
 l,What length do you want for the box?,12
 h,What height do you want for the box?,10
 w,What width do you want for the box?,11
-t,What is the thickness of the material?,0.32
+t,What is the thickness of the material?,0.286
 dpi,"What is your Screen's dpi?
  Find it using this link :https://www.infobyip.com/detectmonitordpi.php",120
 engraving,Type the text you want to engrave on the front face of the box. Type NA if you do not want any engraving. ,Box 2
